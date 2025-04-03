@@ -8,34 +8,24 @@
 
 from PyQt6 import QtCore, QtGui, QtWidgets
 
-
+class _Ftile(QtWidgets.QWidget):
+    pass
 class FunctionTile(QtWidgets.QWidget):
-    def __init__(self,Form):
+    def __init__(self,name):
         super().__init__()
-        self.verticalLayoutWidget = QtWidgets.QWidget(parent=Form)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(0, 0, 191, 91))
-        self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
-        self.FunctionTileLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
-        self.FunctionTileLayout.setContentsMargins(0, 0, 0, 0)
-        self.FunctionTileLayout.setObjectName("FunctionTileLayout")
-        self.FunctionNameLabel = QtWidgets.QLabel(parent=self.verticalLayoutWidget)
-        self.FunctionNameLabel.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.FunctionNameLabel.setObjectName("FunctionNameLabel")
-        self.FunctionTileLayout.addWidget(self.FunctionNameLabel)
-        self.FunctionSlider = QtWidgets.QSlider(parent=self.verticalLayoutWidget)
-        self.FunctionSlider.setOrientation(QtCore.Qt.Orientation.Horizontal)
-        self.FunctionSlider.setObjectName("FunctionSlider")
-        self.FunctionTileLayout.addWidget(self.FunctionSlider)
+        VLayout = QtWidgets.QVBoxLayout()
+        VLayout.addStretch()
+        self._Ftile = _Ftile()
+        VLayout.addWidget(self._Ftile)
+        self.FuncName = QtWidgets.QLabel()
+        VLayout.addWidget(self.FuncName)
+        self.FuncName.setText("FUNCTION")
+        self.Slider = QtWidgets.QSlider()
+        self.Slider.setObjectName(name)
+        self.Slider.setOrientation(QtCore.Qt.Orientation.Horizontal)
+        
+        VLayout.addWidget(self.Slider)
+        self.setLayout(VLayout)
 
-        self.retranslateUi(Form)
-        QtCore.QMetaObject.connectSlotsByName(Form)
 
-    def retranslateUi(self, Form):
-        _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "Form"))
-        self.FunctionNameLabel.setText(_translate("Form", "TextLabel"))
-
-    def addFuntion(self,funct):
-        self.FunctionSlider.valueChanged.connect(funct)
-    def setText(self,text):
-        self.FunctionNameLabel.setText(text)
+       

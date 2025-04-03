@@ -9,7 +9,6 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 from functiontile import FunctionTile
 
-def testfunct():
 
 class Photoedit(object):
     def __init__(self,Form):
@@ -43,7 +42,7 @@ class Photoedit(object):
         self.ControllsCombo.addItem("Test3")
         self.ControllsCombo.addItem("Test4")
         self.ControllsCombo.setCurrentIndex(0)
-        self.ControllsCombo.currentIndexChanged.connect(testfunct)
+        self.ControllsCombo.currentTextChanged.connect(lambda:self.GetIndex())
         self.scrollArea_2 = QtWidgets.QScrollArea(parent=Form)
         self.scrollArea_2.setGeometry(QtCore.QRect(570, 40, 221, 461))
         self.scrollArea_2.setWidgetResizable(True)
@@ -61,6 +60,12 @@ class Photoedit(object):
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
+        
+    def GetIndex(self):
+        print(self.ControllsCombo.currentIndex())
+        self.addControls()
+        
+        
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
@@ -70,7 +75,10 @@ class Photoedit(object):
         photoE = QtGui.QPixmap(path)
         self.PhotoELoader.pixmap(photoE)
     def addControls(self):
-        self.ControllsLayout.addWidget(FunctionTile(self.ControllsLayout))
+        self.ControllsLayout.addWidget(FunctionTile("HEHE"))
+        self.verticalLayoutWidget.findChild(QtWidgets.QSlider,"HEHE",QtCore.Qt.FindChildOption.FindChildrenRecursively).valueChanged.connect(lambda:print("YIPPEE"))
+        self.ControllsLayout.addWidget(FunctionTile("HAA"))
+        self.verticalLayoutWidget.findChild(QtWidgets.QSlider,"HAA",QtCore.Qt.FindChildOption.FindChildrenRecursively).valueChanged.connect(lambda:print("YES"))
 
 
 
